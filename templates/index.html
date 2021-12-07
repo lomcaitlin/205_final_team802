@@ -1,0 +1,16 @@
+{{ bootstrap.load_css() }}
+
+<div class="container">
+  <h1>Breweries API</h1>
+  
+  <ul>
+  {% for brewery in list %}
+    <li>{{ brewery['name'] }}</li>
+    <ul>
+      <li><a href='{{ url_for("up") }}'>Like</a></li>
+      <li><a href='{{ url_for("down") }}'>Dislike</a></li>
+    </ul>
+  {% endfor %}
+  </ul> 
+    
+</div>
