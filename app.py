@@ -1,24 +1,45 @@
-from flask import Flask, render_template
+from flask import Flask, request, render_template
 from flask_bootstrap import Bootstrap
-import requests, json
+import requests
+import json
 
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
 
 ratings = {}
 
-@app.route('/') # TODO: update template to look pretty :')
+
+@app.route('/')  # TODO: update template to look pretty :')
 def index():
     r = requests.get('https://api.openbrewerydb.org/breweries')
     data = r.json()
     return render_template('index.html', list=data)
+
+
+@app.route("/search", methods=['POST'])
+def searchBrewery():
+    r = requests.get('https://api.openbrewerydb.org/breweries')
+    data = r.json()
+    text = request.form['breweryName']
+    res = []
+    for i in range(len(data)):
+        print(data[i])
+        if data[i]['name'] == text:
+            res.append(data[i])
+    return render_template('index.html', list=res)
+
 
 @app.route('/like')
 def up():
     print("up")
     return "test"
 
+
 @app.route('/dislike')
 def down():
     print("down")
     return "test"
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
