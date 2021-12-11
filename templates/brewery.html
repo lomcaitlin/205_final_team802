@@ -1,0 +1,19 @@
+{{ bootstrap.load_css() }}
+
+<div class="container">
+    
+    
+    <ul>
+    {% for brewery in list %}
+        {% if brewery['id'] == brewery_id %}
+            <h1>{{ brewery['name'] }}</h1>
+             <li>{{ brewery['street'] }}</li>
+             <li>{{ brewery['city'] }}</li>
+             <li>{{ brewery['state'] }}</li>
+             <li>{{ brewery['country'] }}</li>
+             <li>{{ brewery['phone'] }}</li>
+        {% endif %}
+    {% endfor %}
+    </ul> 
+      
+  </div>
