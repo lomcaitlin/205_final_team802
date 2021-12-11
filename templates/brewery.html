@@ -1,0 +1,49 @@
+{{ bootstrap.load_css() }}
+
+<div class="container">
+    
+
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#"
+              >Home <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#"
+              >About <span class="sr-only">(current)</span></a
+            >
+          </li>
+        </ul>
+        <form action="/search" class="form-inline my-2 my-lg-0" method="post">
+          <input
+            name="breweryName"
+            class="form-control mr-sm-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+            Search
+          </button>
+        </form>
+      </div>
+    </nav>
+
+    <ul>
+    {% for brewery in list %}
+        {% if brewery['id'] == brewery_id %}
+            <h1>{{ brewery['name'] }}</h1>
+             <li>{{ brewery['street'] }}</li>
+             <li>{{ brewery['city'] }}</li>
+             <li>{{ brewery['state'] }}</li>
+             <li>{{ brewery['country'] }}</li>
+             <li>{{ brewery['phone'] }}</li>
+        {% endif %}
+    {% endfor %}
+    </ul> 
+      
+  </div>

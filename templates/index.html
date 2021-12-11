@@ -34,7 +34,9 @@
 
   <ul>
     {% for brewery in list %}
-    <li>{{ brewery['name'] }}</li>
+    <a href="{{ url_for('brewery', brewery_id = brewery['id'])}}">  
+      <li>{{ brewery['name'] }}</li>
+    </a>
     <ul>
       <li><a href='{{ url_for("up") }}'>Like</a></li>
       <li><a href='{{ url_for("down") }}'>Dislike</a></li>
