@@ -3,6 +3,8 @@ from flask_bootstrap import Bootstrap
 import requests
 import json
 
+
+
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
 
@@ -14,6 +16,11 @@ data = r.json()
 @app.route('/')  # TODO: update template to look pretty :')
 def index():
     return render_template('index.html', list=data)
+
+
+@app.route('/about')
+def about():
+    return render_template('about.html',list=data)
 
 
 @app.route("/search", methods=['POST'])
