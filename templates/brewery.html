@@ -5,13 +5,9 @@
 
 {% block content %}
 <ul>
-
-        <h1>{{ brewery['name'] }}</h1>
-          <li>{{ brewery['street'] }}</li>
-          <li>{{ brewery['city'] }}</li>
-          <li>{{ brewery['state'] }}</li>
-          <li>{{ brewery['country'] }}</li>
-          <li>{{ brewery['phone'] }}</li>
-
+    <h1>{{ brewery['name'] }}</h1>
+        <li>Located at {{ brewery['street'] }} {{ brewery['city'] }}, {{ brewery['state'] }} {{ brewery['postal_code'] }}</li>
+        <li>{{ brewery['name'] }} is a {{ brewery['brewery_type'] }} brewery </li>
+        <li>Call them at {{ brewery['phone']}}</li>
 </ul> 
 {% endblock %}
