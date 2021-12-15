@@ -19,6 +19,8 @@ def index():
 
 @app.route('/about')
 def about():
+    r = requests.get('https://api.openbrewerydb.org/breweries')
+    data = r.json()
     return render_template('about.html',list=data)
 
 
@@ -50,7 +52,7 @@ def down():
 def brewery(brewery_id):
     r = requests.get(f'https://api.openbrewerydb.org/breweries/{brewery_id}')
     data = r.json()
-    return render_template('brewery.html', list = data, brewery_id = brewery_id)
+    return render_template('brewery.html', brewery = data)
 
 
 if __name__ == "__main__":
