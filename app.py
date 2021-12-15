@@ -75,7 +75,6 @@ def down(id):
 
 @app.route('/breweries/<brewery_id>')
 def brewery(brewery_id):
-    #fix
     r = requests.get(f'https://api.openbrewerydb.org/breweries/{brewery_id}')
     data = r.json()
     return render_template('brewery.html', brewery = data)
