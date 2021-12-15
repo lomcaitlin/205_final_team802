@@ -1,7 +1,8 @@
 {{ bootstrap.load_css() }}
 
 <div class="container">
-    
+        <style>
+            
         </style>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -32,19 +33,9 @@
       </form>
     </div>
   </nav>
-  <!--Text-Align, Font Size Change, Changed color of like and dislike button. -Hunter-->
-  <h1 style ="text-align: center;">Breweries API</h1>
-  <h5 style="text-align: center;"> Are you looking for a brewery? This website uses a comprehensive API to list all breweries.</h5>
-  <ul>
-    
-    {% for brewery in list %}
-    <a href="{{ url_for('brewery', brewery_id = brewery['id'])}}">  
-      <li style ="font-size:1.5vw">{{ brewery['name'] }}</li>
-    </a>
-    <ul>
-        <p><i><a href='{{ url_for("up") }}' style = "color:green">Like</a></i></p>
-        <p><i><a href='{{ url_for("down") }}' style="color:red" >Dislike</a></i></p>
-    </ul>
-    {% endfor %}
-  </ul>
+  
+  <div class="inside-container">
+    <h1 style ="text-align: center;">Breweries API</h1>
+    <h5 style="text-align: center;"> Are you looking for a brewery? This website uses a comprehensive API to list all breweries.</h5>
+  </div>
 </div>
