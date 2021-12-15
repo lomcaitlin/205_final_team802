@@ -6,15 +6,24 @@
 {% endblock %}
 
 {% block content %}
-<ul>
+<div class="list-group list-group-flush">
+  
   {% for brewery in list %}
-  <a href="{{ url_for('brewery', brewery_id = brewery['id'])}}">  
-    <li>{{ brewery['name'] }}</li>
-  </a>
-  <ul>
-    <li><a href='{{ url_for("up") }}'>Like</a></li>
-    <li><a href='{{ url_for("down") }}'>Dislike</a></li>
-  </ul>
+  <div class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+    <span class="my-0 h5" style="flex:1">
+    {% if list[brewery]['likes'] %}
+      <p class="m-0">{{ list[brewery]['likes'] }} likes</p>
+    {% else %}
+      <p class="m-0">No votes yet!</p>
+    {% endif %}
+    </span>
+    <a style="flex:1" class="text-center" href="{{ url_for('brewery', brewery_id = list[brewery]['id']) }}">{{ list[brewery]['name'] }}</a>
+    <div class="text-right" style="flex:1">
+      <a href="{{ url_for('up', id=list[brewery]['id']) }}" class="btn btn-outline-success">+1</a>
+      <a href="{{ url_for('down', id=list[brewery]['id']) }}" class="btn btn-outline-danger">-1</a>
+    </div>
+  </div>
   {% endfor %}
-</ul>
+    
+</div>
 {% endblock %}
