@@ -1,50 +1,20 @@
-{{ bootstrap.load_css() }}
+{% extends "partials/base.html" %}
 
-<div class="container">
-    
-        </style>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-        <!--added url_for('index') to return to home page by clicking on link - Hunter-->
-          <a class="nav-link" href="{{ url_for('index')}}"
-            >Home <span class="sr-only">(current)</span></a
-          >
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="{{ url_for('about')}}"
-            >About <span class="sr-only">(current)</span></a
-          >
-        </li>
-      </ul>
-      <form action="/search" class="form-inline my-2 my-lg-0" method="post">
-        <input
-          name="breweryName"
-          class="form-control mr-sm-2"
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-        />
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-          Search
-        </button>
-      </form>
-    </div>
-  </nav>
-  <!--Text-Align, Font Size Change, Changed color of like and dislike button. -Hunter-->
-  <h1 style ="text-align: center;">Breweries API</h1>
-  <h5 style="text-align: center;"> Are you looking for a brewery? This website uses a comprehensive API to list all breweries.</h5>
+{% block title %}
+<h1 class="text-center">Breweries API</h1>
+<h5 class="text-center">Are you looking for a brewery? This website uses a comprehensive API to list all breweries.</h5>
+{% endblock %}
+
+{% block content %}
+<ul>
+  {% for brewery in list %}
+  <a href="{{ url_for('brewery', brewery_id = brewery['id'])}}">  
+    <li>{{ brewery['name'] }}</li>
+  </a>
   <ul>
-    
-    {% for brewery in list %}
-    <a href="{{ url_for('brewery', brewery_id = brewery['id'])}}">  
-      <li style ="font-size:1.5vw">{{ brewery['name'] }}</li>
-    </a>
-    <ul>
-        <p><i><a href='{{ url_for("up") }}' style = "color:green">Like</a></i></p>
-        <p><i><a href='{{ url_for("down") }}' style="color:red" >Dislike</a></i></p>
-    </ul>
-    {% endfor %}
+    <li><a href='{{ url_for("up") }}'>Like</a></li>
+    <li><a href='{{ url_for("down") }}'>Dislike</a></li>
   </ul>
-</div>
+  {% endfor %}
+</ul>
+{% endblock %}

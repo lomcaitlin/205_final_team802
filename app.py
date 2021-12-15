@@ -10,11 +10,10 @@ bootstrap = Bootstrap(app)
 
 ratings = {}
 
-r = requests.get('https://api.openbrewerydb.org/breweries')
-data = r.json()
-
-@app.route('/')  # TODO: update template to look pretty :')
+@app.route('/')
 def index():
+    r = requests.get('https://api.openbrewerydb.org/breweries')
+    data = r.json()
     return render_template('index.html', list=data)
 
 
@@ -25,11 +24,13 @@ def about():
 
 @app.route("/search", methods=['POST'])
 def searchBrewery():
+    r = requests.get('https://api.openbrewerydb.org/breweries')
+    data = r.json()
     text = request.form['breweryName']
     res = []
     for i in range(len(data)):
         print(data[i])
-        if data[i]['name'] == text:
+        if text.lower() in data[i]['name'].lower():
             res.append(data[i])
     return render_template('index.html', list=res)
 
@@ -47,6 +48,8 @@ def down():
 
 @app.route('/breweries/<brewery_id>')
 def brewery(brewery_id):
+    r = requests.get(f'https://api.openbrewerydb.org/breweries/{brewery_id}')
+    data = r.json()
     return render_template('brewery.html', list = data, brewery_id = brewery_id)
 
 
