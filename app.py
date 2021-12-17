@@ -2,7 +2,6 @@ from flask import Flask, request, render_template, redirect, url_for
 from flask_bootstrap import Bootstrap
 import requests
 import json
-from pprint import pprint
 
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
@@ -28,7 +27,6 @@ def reorder(list):
             temp.pop(id)
     for leftover in temp:
         list[leftover] = temp[leftover]
-    pprint(list)
     return list
 
 @app.route('/')
